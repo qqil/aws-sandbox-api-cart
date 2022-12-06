@@ -34,8 +34,8 @@ CREATE TABLE orders (
 /*
     My cognito user id: 7fe9d6a0-6a9e-4346-9fc6-d8947d884d2d
 */
-INSERT INTO cart (id, created_at, updated_at, is_ordered) 
-VALUES ("7fe9d6a0-6a9e-4346-9fc6-d8947d884d2d", DEFAULT, DEFAULT, DEFAULT) RETURNING id;
+INSERT INTO cart (id, user_id, created_at, updated_at, is_ordered) 
+VALUES ('70be2e0a-e06d-4040-930a-7cc5bf953960','7fe9d6a0-6a9e-4346-9fc6-d8947d884d2d', DEFAULT, DEFAULT, DEFAULT) RETURNING id;
 
 /*
     Sample product ids, that already exist in dynamodb:
@@ -46,9 +46,9 @@ VALUES ("7fe9d6a0-6a9e-4346-9fc6-d8947d884d2d", DEFAULT, DEFAULT, DEFAULT) RETUR
 */
 INSERT INTO cart_items (cart_id, product_id, "count")
 VALUES 
-    ("7fe9d6a0-6a9e-4346-9fc6-d8947d884d2d", "3550e355-430a-463f-b798-4eb5bfbc4a59", 1),
-    ("7fe9d6a0-6a9e-4346-9fc6-d8947d884d2d", "b3a40595-a4a2-4eb1-b9ba-0064252844ba", 5),
-    ("7fe9d6a0-6a9e-4346-9fc6-d8947d884d2d", "1e375095-7f1c-44fc-81cc-76959b782f94", 3)
+    ('70be2e0a-e06d-4040-930a-7cc5bf953960', '3550e355-430a-463f-b798-4eb5bfbc4a59', 1),
+    ('70be2e0a-e06d-4040-930a-7cc5bf953960', 'b3a40595-a4a2-4eb1-b9ba-0064252844ba', 5),
+    ('70be2e0a-e06d-4040-930a-7cc5bf953960', '1e375095-7f1c-44fc-81cc-76959b782f94', 3);
 
-INSERT INTO orders (user_id, cart_id, payment, delivery, comments, "status")
-VALUES ("7fe9d6a0-6a9e-4346-9fc6-d8947d884d2d", "7fe9d6a0-6a9e-4346-9fc6-d8947d884d2d", {}, {}, "order comment", "inProgress")
+INSERT INTO orders (id, user_id, cart_id, payment, delivery, comments, "status", total)
+VALUES (DEFAULT, '7fe9d6a0-6a9e-4346-9fc6-d8947d884d2d', '70be2e0a-e06d-4040-930a-7cc5bf953960', '{}', '{}', 'order comment', 'inProgress', 99);
