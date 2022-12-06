@@ -1,0 +1,170 @@
+{
+	"info": {
+		"_postman_id": "c181a130-3515-4059-b21d-db21ef3d2e80",
+		"name": "cart-service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23956488"
+	},
+	"item": [
+		{
+			"name": "api/profile",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "api/profile/cart",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer qa",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://7wmw015yz3.execute-api.eu-central-1.amazonaws.com/dev/api/profile/cart",
+					"protocol": "https",
+					"host": [
+						"7wmw015yz3",
+						"execute-api",
+						"eu-central-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"api",
+						"profile",
+						"cart"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/profile/cart",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer qa",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cartId\": \"copy cart id from GET api/profile/cart\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://7wmw015yz3.execute-api.eu-central-1.amazonaws.com/dev/api/profile/cart",
+					"protocol": "https",
+					"host": [
+						"7wmw015yz3",
+						"execute-api",
+						"eu-central-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"api",
+						"profile",
+						"cart"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/profile/cart",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer qa",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"items\": [\r\n        {\r\n            \"product\": {\r\n                \"id\": \"390acec2-37b8-4f99-81fe-548e5dd5473a\"\r\n            },\r\n            \"count\": 5\r\n        },\r\n        {\r\n            \"product\": {\r\n                \"id\": \"f8880e6b-7ace-4a56-a6e7-3da03d171340\"\r\n            },\r\n            \"count\": 3\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://7wmw015yz3.execute-api.eu-central-1.amazonaws.com/dev/api/profile/cart",
+					"protocol": "https",
+					"host": [
+						"7wmw015yz3",
+						"execute-api",
+						"eu-central-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"api",
+						"profile",
+						"cart"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/profile/cart/checkout",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer qa",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"payment\": \"{ \\\"mykey\\\": \\\"myval\\\" }\",\r\n    \"delivery\": \"{ \\\"mykey2\\\": \\\"myval2\\\" }\",\r\n    \"comments\": \"Checkout comment!11\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://7wmw015yz3.execute-api.eu-central-1.amazonaws.com/dev/api/profile/cart/checkout",
+					"protocol": "https",
+					"host": [
+						"7wmw015yz3",
+						"execute-api",
+						"eu-central-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"api",
+						"profile",
+						"cart",
+						"checkout"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

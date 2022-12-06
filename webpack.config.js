@@ -11,7 +11,9 @@ module.exports = (options) => {
   return {
     ...options,
     mode: 'production',
-    externals: [],
+    externals: {
+      knex: 'commonjs knex'
+    },
     optimization: {
       minimize: true,
       minimizer: [
@@ -40,6 +42,10 @@ module.exports = (options) => {
           }
           return false;
         },
+      }),
+      // Fix to build knex
+      new webpack.IgnorePlugin({
+        resourceRegExp: /(sqlite3|pg|pg-query-stream|oracledb|mysql2|tedious|mysql)/
       }),
     ],
   }

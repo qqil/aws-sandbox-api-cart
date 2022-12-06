@@ -38,3 +38,5 @@ lerna-debug.log*
 !.elasticbeanstalk/*.global.yml
 
 .serverless
+.env*
+!.env.example

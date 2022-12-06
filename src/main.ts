@@ -2,8 +2,9 @@ import { NestFactory } from '@nestjs/core';
 import helmet from 'helmet';
 import { AppModule } from './app.module';
 import serverlessExpress from '@vendia/serverless-express';
+import { APIGatewayProxyHandler } from 'aws-lambda';
+import { ValidationPipe } from '@nestjs/common';
 
-const port = process.env.PORT || 4000;
 let app;
 
 async function bootstrap() {
@@ -12,18 +13,24 @@ async function bootstrap() {
   app.enableCors({
     origin: (req, callback) => callback(null, true),
   });
+
   app.use(helmet());
 
-  await app.listen(port);
+  app.useGlobalPipes(new ValidationPipe({ transform: true }));
 
-  return app;
+  await app.init();
+
+  return serverlessExpress({
+    app: app.getHttpAdapter().getInstance(),
+  });
 }
 
-export const appHandler = async (event, context) => {
-  if (!app)
-    app = serverlessExpress({
-      app: (await bootstrap()).getHttpAdapter().getInstance(),
-    });
+export const appHandler: APIGatewayProxyHandler = async (
+  event,
+  context,
+  callback,
+) => {
+  if (!app) app = await bootstrap();
 
-  return app(event, context);
+  return app(event, context, callback);
 };
